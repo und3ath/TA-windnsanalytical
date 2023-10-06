@@ -158,7 +158,7 @@ while(($record = $reader.ReadEvent()) -ne $null) # Do not use Get-WinEvent to av
 {
     
     # fix timestamp which is in a TZ format to UTC 
-    $record | Add-Member -MemberType NoteProperty -Name TimeCreated -Value ($record.TimeCreated.ToUniversalTime())
+    $record | Add-Member -MemberType NoteProperty -Name TimeCreated -Value ($record.TimeCreated.ToUniversalTime()) -Force
     
     if($logStart -eq $null)
     {
