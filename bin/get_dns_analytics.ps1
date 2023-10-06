@@ -37,6 +37,11 @@ function Stop-Watchdog {
   }
 }
 
+
+# enforce culture if you dns is a non US format .... 
+[System.Threading.Thread]::CurrentThread.CurrentUICulture = "en-US" 
+[System.Threading.Thread]::CurrentThread.CurrentCulture = "en-US"
+
 $scriptname = Split-Path $MyInvocation.MyCommand.Path -Leaf
 
 Start-Watchdog $MaxRuntimeSecs
