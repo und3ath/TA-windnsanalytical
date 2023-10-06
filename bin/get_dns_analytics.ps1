@@ -156,6 +156,10 @@ if($SplunkdLogging)
 
 while(($record = $reader.ReadEvent()) -ne $null) # Do not use Get-WinEvent to avoid performance overhead of FormatDescription()
 {
+    
+    # fix timestamp which is in a TZ format to UTC 
+    $record | Add-Member -MemberType NoteProperty -Name TimeCreated -Value ($record.TimeCreated.ToUniversalTime())
+    
     if($logStart -eq $null)
     {
         $logStart = $record.TimeCreated
